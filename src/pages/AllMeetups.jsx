@@ -1,6 +1,7 @@
 import MeetupItem from '../components/Meetups/MeetupsItem';
-import MeetupList from '../components/Meetups/MeetupList' 
-
+import MeetupList from '../components/Meetups/MeetupList' ;
+import {useState} from 'react'
+ 
 const DUMMY_DATA = [
   {
     id: "m1",
@@ -23,6 +24,12 @@ const DUMMY_DATA = [
 ];
  
 function AllMeetups() {
+  const [isLoading,setIsLoading] = useState(true)
+  fetch('https://react-app-baby-default-rtdb.firebaseio.com/meetups.json').then((data) =>{
+    return data.json();
+  }).then((data) =>{
+    setIsLoading(false)
+  })
   return (
     <div>
       <section>
